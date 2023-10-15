@@ -29,14 +29,20 @@ void main(void)
     LCD_Init();
     /*COLOCAR EL CURSOR AL INICIO*/
     LCD_Send_Command(0x80);
-    /*ESCRIBIR UNA LETRA*/
-    LCD_Send_String("FRASE CON ESPACIOS");
    
+    /*ESCRIBIR UNA FRASE*/
+    LCD_XY (0,3); //primera fila, cuarta columna
+    LCD_Send_String("FRASE 123");
+    
+    /*SEGUNDA LINEA*/
+    LCD_XY (1,1); //segunda fila, segunda columna
+    LCD_Send_String ("SEGUNDA LINEA");
+    
     /*BUCLE PRINCIPAL*/    
     while(1);
     return;
 }
-/*definición de funciones*/
+/*definiciÃ³n de funciones*/
 void Init_Internal_Osc (_freq_int_t freq)
 {
 /*Limpiar el registro OSCON*/
