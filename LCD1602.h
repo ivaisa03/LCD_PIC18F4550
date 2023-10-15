@@ -38,5 +38,9 @@ void LCD_Send_Command(char comando);
 void LCD_Send_Character(char character);
 void LCD_Init(void);
 void LCD_Send_String(char cadena[]);
+
+//para las filas y columnas -  x:fila y:columna
+void LCD_XY (uint8_t x, uint8_t y);
+
 #endif	/* LCD1602_H */
 
