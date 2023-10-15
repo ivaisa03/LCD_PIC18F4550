@@ -26,8 +26,8 @@ void LCD_Init(void)
     LCD_Init_Gpio();//CONFIGURAMOS LOS PINES COMO SALIDA
     LCD_Send_Command(0x01);//COMANDO: CLEAR DSIPLAY
     LCD_Send_Command(0x02);//COMANDO: RETURN HOME
-    LCD_Send_Command(0x06);//COMANDO: I/D =1;DERECHA-SH=0;:INCREMENTO DERECHA SIN SHIFT
-    LCD_Send_Command(0x0F);//COMANDO: DISPLAY ON CURSOR ON Y BLINK ON 
+    LCD_Send_Command(0x06);//COMANDO: I/D =1;DERECHA-SH=0;:INCREMENTO DERECHA SIN SHIFT (SHIFT hace que las letras se muevan)
+    LCD_Send_Command(0x0F);//COMANDO: DISPLAY ON CURSOR ON Y BLINK ON | Si no quiero que haya cursor ni blink - (0x0C)
     LCD_Send_Command(0x38);//COMANDO: 8 BITS 2 LINEAS 5X8 CARACTER
     LCD_Send_Command(0x02);//COMANDO: RETURN HOME
     
@@ -39,5 +39,20 @@ void LCD_Send_String(char cadena[])
     {
         LCD_Send_Character(cadena[index]);
         index++;
+    }
+}
+
+void LCD_XY (uint8_t x, uint8_t y)
+{
+    //x fila | y columna
+    if (x>0)
+    {
+        //fila 2
+        LCD_Send_Command(0xC0 + y);
+    }
+    else 
+    {
+        //fila 1
+        LCD_Send_Command(0x80+ y);
     }
 }
